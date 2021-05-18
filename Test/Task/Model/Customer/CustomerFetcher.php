@@ -78,7 +78,7 @@ class CustomerFetcher implements BatchingFetcherInterface
      */
     public function rewind(): void
     {
-        $this->currentPage = 0;
+        $this->currentPage = 1;
         $this->pageSize = 0;
     }
 }
