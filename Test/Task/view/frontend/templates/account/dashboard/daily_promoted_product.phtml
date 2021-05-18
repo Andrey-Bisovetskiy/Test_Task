@@ -1,0 +1,17 @@
+<?php
+use Test\Task\Block\Account\Dashboard\DailyPromotedProduct;
+
+/**
+ * @var $block DailyPromotedProduct
+ */
+$product = $block->getProductByCustomerAttribute();
+?>
+<div class="daily-promoted-product">
+    <img src="<?= $block->getImageByPath($product->getImage())?>" alt="No pictures"/>
+    <div class="daily-promoted-product-title">
+        <span>Name: <?= $product->getName() ?></span>
+    </div>
+    <div class="daily-promoted-product-price">
+        <span>Price: <?= $product->getPrice() ?></span>
+    </div>
+</div>

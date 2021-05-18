@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+
+<config>
+    <group id="custom_crongroup">
+        <job name="custom_cronjob" instance="Test\Task\Cron\UpdateCustomerAttributeDailyPromotedProduct" method="execute">
+            <schedule>0 2 * * *</schedule>
+        </job>
+    </group>
+</config>

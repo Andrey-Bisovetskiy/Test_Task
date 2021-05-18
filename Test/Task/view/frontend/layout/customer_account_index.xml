@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <block class="Test\Task\Block\Account\Dashboard\DailyPromotedProduct"
+                   name="customer_account_dashboard_daily_promoted_product"
+                   template="Test_Task::account/dashboard/daily_promoted_product.phtml"
+                   after="customer_account_dashboard_address"
+                   cacheable="false"
+            />
+        </referenceContainer>
+    </body>
+</page>
