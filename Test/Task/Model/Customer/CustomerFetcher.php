@@ -15,9 +15,9 @@ use Test\Task\Api\Data\BatchingFetcherInterface;
  */
 class CustomerFetcher implements BatchingFetcherInterface
 {
-    private $currentPage = 0;
+    private $currentPage = 1;
 
-    private $pageSize = 0;
+    private $customerIdArray = [];
 
     /**
      * @var CustomerRepositoryInterface
@@ -57,15 +57,19 @@ class CustomerFetcher implements BatchingFetcherInterface
     {
         $items = [];
         try {
-            $this->pageSize += $batchSize;
             $searchCriteria = $this->searchCriteriaBuilder
                 ->setCurrentPage($this->currentPage)
                 ->setPageSize($batchSize)
                 ->create();
             $customerList = $this->customerRepository->getList($searchCriteria)->getItems();
             if ($customerList) {
-                $items = $customerList;
-                $this->currentPage++;
+                foreach ($customerList as $customer) {
+                    if (!in_array($customer->getId(), $this->customerIdArray)) {
+                        $this->customerIdArray[] = $customer->getId();
+                        $items[] = $customer;
+                    }
+                }
+                ++$this->currentPage;
             }
         } catch (Exception $exception) {
             $this->logger->critical($exception->getMessage());
@@ -79,6 +83,5 @@ class CustomerFetcher implements BatchingFetcherInterface
     public function rewind(): void
     {
         $this->currentPage = 1;
-        $this->pageSize = 0;
     }
 }
